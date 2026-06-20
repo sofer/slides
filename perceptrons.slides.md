@@ -72,7 +72,7 @@ In 1958, Rosenblatt brings all these ideas together in an artificial neuron that
 
 # The classification boundary
 
-<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats/06-boundary-letterbox.svg" alt="Labelled points before and after adding one separating line">
+<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/06-boundary-letterbox.svg" alt="Labelled points before and after adding one separating line">
 
 <p class="sample-caption">The line separates two classes of input.</p>
 
@@ -84,7 +84,7 @@ Which side of the line a point falls determines the predicted output.
 
 # Weights determine the slope
 
-<img class="sample-boundary-visual sample-boundary-visual--raised" src="./assets/perceptrons/story-beats/07-weights-slope-letterbox.svg" alt="The same points shown with two separating lines of different slopes">
+<img class="sample-boundary-visual sample-boundary-visual--raised" src="./assets/perceptrons/story-beats-v2/07-weights-slope-letterbox.svg" alt="The same points shown with two separating lines of different slopes">
 
 <p class="sample-caption">Changing the weights rotates the boundary.</p>
 
@@ -102,7 +102,7 @@ Answer: The position of the boundary needs to move, without changing its slope.
 
 # Bias determines the threshold
 
-<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats/08-bias-shift-letterbox.svg" alt="The same sloped boundary moves without changing its slope">
+<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/08-bias-shift-letterbox.svg" alt="The same sloped boundary moves without changing its slope">
 
 <p class="sample-caption">Bias translates the boundary along its normal direction.</p>
 
@@ -114,7 +114,7 @@ It moves the decision boundary without changing its slope.
 
 # Activation turns the score into a prediction
 
-<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats/09-activation-step-letterbox.svg" alt="A score past the threshold passes through the activation step function and becomes a class prediction">
+<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/09-activation-step-letterbox.svg" alt="A score past the threshold passes through the activation step function and becomes a class prediction">
 
 <p class="sample-caption">A score becomes a prediction.</p>
 
@@ -132,7 +132,7 @@ Answer: Compare it with the expected classification.
 
 # The error is calculated
 
-<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats/10-compare-label-letterbox.svg" alt="A predicted class is compared with an expected class">
+<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/10-compare-label-letterbox.svg" alt="A predicted class is compared with an expected class">
 
 <p class="sample-caption">Error = Expected - Prediction</p>
 
@@ -150,7 +150,7 @@ Answer: The weights and bias.
 
 # The weights and bias are updated
 
-<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats/11-error-update-letterbox.svg" alt="An error causes the separating line to move toward a better position">
+<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/11-error-update-letterbox.svg" alt="An error causes the separating line to move toward a better position">
 
 <p class="sample-caption">The parameters are adjusted to reduce the error.</p>
 
@@ -168,7 +168,7 @@ Answer: No. One correction responds to one mistake; the model needs repeated cha
 
 # Epochs are repeated passes
 
-<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats/12-epochs-letterbox.svg" alt="The separating line improves over three repeated passes through the same data">
+<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/12-epochs-letterbox.svg" alt="The separating line improves over three repeated passes through the same data">
 
 <p class="sample-caption">Repeated passes refine the line.</p>
 
@@ -205,7 +205,7 @@ Rosenblatt also built a machine that could recognise patterns, showing the model
 
 # Linear classification has limits
 
-<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats/13-linear-limit-letterbox.svg" alt="A single straight line cannot separate alternating classes">
+<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/13-linear-limit-letterbox.svg" alt="A single straight line cannot separate alternating classes">
 
 <p class="sample-caption">Some problems need more structure.</p>
 

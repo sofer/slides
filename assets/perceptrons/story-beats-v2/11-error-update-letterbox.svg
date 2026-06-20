@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" role="img" aria-labelledby="title desc">
+  <title id="title">The weights and bias are updated</title>
+  <desc id="desc">An error rotates and shifts the boundary from its old position to a corrected one.</desc>
+  <defs>
+    <marker id="tip" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#59636e"/>
+    </marker>
+    <marker id="tip-big" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#8a9099"/>
+    </marker>
+  </defs>
+  <style>
+    .bg { fill: #ffffff; }
+    .panel { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 2; }
+    .grid { stroke: #d1d9e0; stroke-width: 1.2; opacity: 0.7; }
+    .axis { stroke: #59636e; stroke-width: 2.6; stroke-linecap: round; }
+    .blue { fill: #dbeafe; stroke: #2563eb; stroke-width: 4; }
+    .red { fill: #ffebe9; stroke: #cf222e; stroke-width: 4; }
+    .region-blue { fill: #2563eb; opacity: 0.07; }
+    .region-red { fill: #cf222e; opacity: 0.07; }
+    .boundary { stroke: #079c91; stroke-width: 8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .boundary-ghost { stroke: #079c91; stroke-width: 6; fill: none; stroke-linecap: round; opacity: 0.3; stroke-dasharray: 16 12; }
+    .node { fill: #e6f7f5; stroke: #079c91; stroke-width: 4; }
+    .node-sum { fill: #eaf1fe; stroke: #2563eb; stroke-width: 4; }
+    .node-out { fill: #ffffff; stroke: #59636e; stroke-width: 4; }
+    .edge { stroke: #59636e; fill: none; stroke-linecap: round; }
+    .flow { stroke: #59636e; fill: none; stroke-width: 5; stroke-linecap: round; marker-end: url(#tip); }
+    .drop { stroke: #59636e; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 8 8; opacity: 0.85; }
+    .ring { stroke: #cf222e; stroke-width: 4; fill: none; }
+    .arc { fill: none; stroke: #59636e; stroke-width: 4; stroke-linecap: round; opacity: 0.85; marker-end: url(#tip); }
+    .bigarrow { fill: none; stroke: #8a9099; stroke-width: 6; stroke-linecap: round; marker-end: url(#tip-big); }
+    .step { stroke: #079c91; stroke-width: 7; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .thresh { stroke: #079c91; stroke-width: 3; stroke-dasharray: 8 8; opacity: 0.55; }
+    .tick { stroke: #1a7f37; stroke-width: 9; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .cross { stroke: #cf222e; stroke-width: 9; fill: none; stroke-linecap: round; }
+    .curvy { fill: none; stroke: #59636e; stroke-width: 4; stroke-linecap: round; opacity: 0.9; marker-end: url(#tip); }
+    .sigma { font-family: 'Inter', Arial, sans-serif; font-size: 46px; font-weight: 700; fill: #2563eb; text-anchor: middle; dominant-baseline: central; }
+    .qmark { font-family: 'Inter', Arial, sans-serif; font-size: 70px; font-weight: 700; fill: #59636e; text-anchor: middle; dominant-baseline: central; opacity: 0.7; }
+  </style>
+  <rect class="bg" width="1500" height="500"/>
+  <rect class="panel" x="120" y="70" width="520" height="360" rx="10"/>
+  <line class="grid" x1="281.0" y1="388.0" x2="281.0" y2="96.0"/>
+  <line class="grid" x1="392.0" y1="388.0" x2="392.0" y2="96.0"/>
+  <line class="grid" x1="503.0" y1="388.0" x2="503.0" y2="96.0"/>
+  <line class="grid" x1="170.0" y1="304.6" x2="614.0" y2="304.6"/>
+  <line class="grid" x1="170.0" y1="221.1" x2="614.0" y2="221.1"/>
+  <line class="grid" x1="170.0" y1="137.7" x2="614.0" y2="137.7"/>
+  <line class="axis" x1="170.0" y1="388.0" x2="614.0" y2="388.0"/>
+  <line class="axis" x1="170.0" y1="388.0" x2="170.0" y2="96.0"/>
+  <circle class="blue" cx="247.7" cy="321.3" r="11"/>
+  <circle class="blue" cx="325.4" cy="342.1" r="11"/>
+  <circle class="blue" cx="403.1" cy="308.7" r="11"/>
+  <circle class="blue" cx="480.8" cy="333.8" r="11"/>
+  <circle class="blue" cx="358.7" cy="287.9" r="11"/>
+  <circle class="red" cx="303.2" cy="179.4" r="11"/>
+  <circle class="red" cx="386.4" cy="154.4" r="11"/>
+  <circle class="red" cx="458.6" cy="187.8" r="11"/>
+  <circle class="red" cx="525.2" cy="166.9" r="11"/>
+  <circle class="red" cx="425.3" cy="221.1" r="11"/>
+  <line class="boundary" x1="183.9" y1="200.9" x2="600.1" y2="213.4"/>
+  <circle class="ring" cx="425.3" cy="221.1" r="24"/>
+  <path class="curvy" d="M540 211.6 A 90 90 0 0 1 545 262"/>
+  <line class="bigarrow" x1="680" y1="250" x2="840" y2="250"/>
+  <rect class="panel" x="860" y="70" width="520" height="360" rx="10"/>
+  <line class="grid" x1="1021.0" y1="388.0" x2="1021.0" y2="96.0"/>
+  <line class="grid" x1="1132.0" y1="388.0" x2="1132.0" y2="96.0"/>
+  <line class="grid" x1="1243.0" y1="388.0" x2="1243.0" y2="96.0"/>
+  <line class="grid" x1="910.0" y1="304.6" x2="1354.0" y2="304.6"/>
+  <line class="grid" x1="910.0" y1="221.1" x2="1354.0" y2="221.1"/>
+  <line class="grid" x1="910.0" y1="137.7" x2="1354.0" y2="137.7"/>
+  <line class="axis" x1="910.0" y1="388.0" x2="1354.0" y2="388.0"/>
+  <line class="axis" x1="910.0" y1="388.0" x2="910.0" y2="96.0"/>
+  <circle class="blue" cx="987.7" cy="321.3" r="11"/>
+  <circle class="blue" cx="1065.4" cy="342.1" r="11"/>
+  <circle class="blue" cx="1143.1" cy="308.7" r="11"/>
+  <circle class="blue" cx="1220.8" cy="333.8" r="11"/>
+  <circle class="blue" cx="1098.7" cy="287.9" r="11"/>
+  <circle class="red" cx="1043.2" cy="179.4" r="11"/>
+  <circle class="red" cx="1126.5" cy="154.4" r="11"/>
+  <circle class="red" cx="1198.6" cy="187.8" r="11"/>
+  <circle class="red" cx="1265.2" cy="166.9" r="11"/>
+  <circle class="red" cx="1165.3" cy="221.1" r="11"/>
+  <line class="boundary-ghost" x1="923.9" y1="200.9" x2="1340.1" y2="213.4"/>
+  <line class="boundary" x1="923.9" y1="175.1" x2="1340.1" y2="266.6"/>
+</svg>
