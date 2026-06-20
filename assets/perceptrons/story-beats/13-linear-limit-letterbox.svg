@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" role="img" aria-labelledby="title desc">
+  <title id="title">Linear classification has limits</title>
+  <desc id="desc">A single straight line cannot separate alternating classes.</desc>
+  <style>
+    .bg { fill: #ffffff; }
+    .panel { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 2; }
+    .grid { stroke: #d1d9e0; stroke-width: 1.2; opacity: 0.72; }
+    .axis { stroke: #59636e; stroke-width: 3; stroke-linecap: round; }
+    .green { fill: #dbeafe; stroke: #2563eb; stroke-width: 4; }
+    .red { fill: #ffebe9; stroke: #cf222e; stroke-width: 4; }
+    .boundary { stroke: #59636e; stroke-width: 6; stroke-linecap: round; opacity: 0.45; stroke-dasharray: 18 14; }
+    .curve { fill: none; stroke: #9a6700; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+    .arrow { fill: none; stroke: #59636e; stroke-width: 4; stroke-linecap: round; marker-end: url(#arrow); }
+  </style>
+  <defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#59636e"/></marker></defs>
+  <rect class="bg" width="1500" height="500"/>
+  <g transform="translate(140 82) scale(1.08)">
+    <rect class="panel" x="0" y="0" width="350" height="290" rx="10"/>
+    <line class="grid" x1="78" y1="34" x2="78" y2="238"/><line class="grid" x1="144" y1="34" x2="144" y2="238"/><line class="grid" x1="210" y1="34" x2="210" y2="238"/><line class="grid" x1="276" y1="34" x2="276" y2="238"/>
+    <line class="grid" x1="42" y1="74" x2="308" y2="74"/><line class="grid" x1="42" y1="124" x2="308" y2="124"/><line class="grid" x1="42" y1="174" x2="308" y2="174"/><line class="grid" x1="42" y1="224" x2="308" y2="224"/>
+    <line class="axis" x1="42" y1="238" x2="314" y2="238"/><line class="axis" x1="42" y1="238" x2="42" y2="28"/>
+    <circle class="red" cx="110" cy="92" r="12"/><circle class="red" cx="250" cy="194" r="12"/>
+    <circle class="green" cx="110" cy="194" r="12"/><circle class="green" cx="250" cy="92" r="12"/>
+    <line class="boundary" x1="68" y1="146" x2="300" y2="146"/>
+  </g>
+  <path class="arrow" d="M610 245 H750"/>
+  <g transform="translate(905 82) scale(1.08)">
+    <rect class="panel" x="0" y="0" width="350" height="290" rx="10"/>
+    <line class="grid" x1="78" y1="34" x2="78" y2="238"/><line class="grid" x1="144" y1="34" x2="144" y2="238"/><line class="grid" x1="210" y1="34" x2="210" y2="238"/><line class="grid" x1="276" y1="34" x2="276" y2="238"/>
+    <line class="grid" x1="42" y1="74" x2="308" y2="74"/><line class="grid" x1="42" y1="124" x2="308" y2="124"/><line class="grid" x1="42" y1="174" x2="308" y2="174"/><line class="grid" x1="42" y1="224" x2="308" y2="224"/>
+    <line class="axis" x1="42" y1="238" x2="314" y2="238"/><line class="axis" x1="42" y1="238" x2="42" y2="28"/>
+    <circle class="red" cx="110" cy="92" r="12"/><circle class="red" cx="250" cy="194" r="12"/>
+    <circle class="green" cx="110" cy="194" r="12"/><circle class="green" cx="250" cy="92" r="12"/>
+    <path class="curve" d="M76 164 C120 118 148 118 176 164 C204 210 236 210 286 164"/>
+  </g>
+</svg>

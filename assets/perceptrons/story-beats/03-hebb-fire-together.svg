@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" role="img" aria-labelledby="title desc" font-family="&#39;Inter&#39;, -apple-system, &#39;Segoe UI&#39;, sans-serif">
+  <title id="title">Neurons that fire together, wire together</title>
+  <desc id="desc">Two connected neurons fire at the same time; the connection between them strengthens from a thin link to a thick one.</desc>
+
+  
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#59636e"></path>
+    </marker>
+  </defs>
+
+  <rect width="1500" height="500" fill="#ffffff"></rect>
+
+  
+  <g transform="translate(140 82) scale(1.08)">
+    <rect x="0" y="0" width="350" height="290" rx="10" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1"></rect>
+
+    <line x1="136" y1="150" x2="214" y2="150" stroke="#59636e" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"></line>
+
+    <circle cx="110" cy="150" r="34" fill="none" stroke="#fd8c73" stroke-width="2.5" opacity="0.5"></circle>
+    <circle cx="110" cy="150" r="42" fill="none" stroke="#fd8c73" stroke-width="2.5" opacity="0.24"></circle>
+    <circle cx="240" cy="150" r="34" fill="none" stroke="#fd8c73" stroke-width="2.5" opacity="0.5"></circle>
+    <circle cx="240" cy="150" r="42" fill="none" stroke="#fd8c73" stroke-width="2.5" opacity="0.24"></circle>
+
+    <circle cx="110" cy="150" r="26" fill="#4d908e"></circle>
+    <circle cx="110" cy="150" r="8" fill="#ffffff" fill-opacity="0.88"></circle>
+    <circle cx="240" cy="150" r="26" fill="#4d908e"></circle>
+    <circle cx="240" cy="150" r="8" fill="#ffffff" fill-opacity="0.88"></circle>
+  </g>
+
+  
+  <path d="M610 245 H750" stroke="#59636e" stroke-width="3" fill="none" marker-end="url(#arrow)"></path>
+
+  
+  <g transform="translate(905 82) scale(1.08)">
+    <rect x="0" y="0" width="350" height="290" rx="10" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1"></rect>
+
+    <line x1="136" y1="150" x2="214" y2="150" stroke="#1F73C7" stroke-width="9" fill="none" stroke-linecap="round"></line>
+
+    <circle cx="110" cy="150" r="34" fill="none" stroke="#fd8c73" stroke-width="2.5" opacity="0.5"></circle>
+    <circle cx="110" cy="150" r="42" fill="none" stroke="#fd8c73" stroke-width="2.5" opacity="0.24"></circle>
+    <circle cx="240" cy="150" r="34" fill="none" stroke="#fd8c73" stroke-width="2.5" opacity="0.5"></circle>
+    <circle cx="240" cy="150" r="42" fill="none" stroke="#fd8c73" stroke-width="2.5" opacity="0.24"></circle>
+
+    <circle cx="110" cy="150" r="26" fill="#4d908e"></circle>
+    <circle cx="110" cy="150" r="8" fill="#ffffff" fill-opacity="0.88"></circle>
+    <circle cx="240" cy="150" r="26" fill="#4d908e"></circle>
+    <circle cx="240" cy="150" r="8" fill="#ffffff" fill-opacity="0.88"></circle>
+  </g>
+</svg>

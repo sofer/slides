@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="340 115 480 250" role="img" aria-labelledby="title desc">
+  <title id="title">Basic perceptron model</title>
+  <desc id="desc">The perceptron figure from the workshop thumbnail, with labels and bias removed. Different input weights are shown with line width and mid-connection arrowheads.</desc>
+  <defs>
+    <marker id="arrow-output" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#475467"/>
+    </marker>
+    <style>
+      .bg { fill: #ffffff; }
+      .muted { stroke: #d6dbe3; stroke-width: 1.2; fill: none; }
+      .teal { stroke: #079c91; fill: #e8fbf8; }
+      .blue { stroke: #2f67f6; fill: #edf3ff; }
+      .output { stroke: #475467; fill: #f8fafc; }
+      .node { stroke-width: 1.7; }
+      .weight-line { stroke: #475467; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .weight-line--input { stroke-width: 1.4; marker-end: url(#arrow-output); }
+      .weight-line--strong { stroke-width: 2.4; }
+      .weight-line--weak { stroke-width: 1.2; }
+      .line-output { stroke: #475467; stroke-width: 1.7; fill: none; marker-end: url(#arrow-output); }
+      .sigma { font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; fill: #245bd6; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="340" y="115" width="480" height="250"/>
+
+  <g transform="translate(468 123) scale(1.18)">
+    <circle class="node teal" cx="0" cy="40.5" r="14"/>
+    <circle class="node teal" cx="0" cy="143.5" r="14"/>
+    <line class="weight-line weight-line--input" x1="14" y1="48" x2="55" y2="70"/>
+    <line class="weight-line weight-line--strong" x1="55" y1="70" x2="96" y2="92"/>
+    <line class="weight-line weight-line--input" x1="14" y1="136" x2="55" y2="114"/>
+    <line class="weight-line weight-line--weak" x1="55" y1="114" x2="96" y2="92"/>
+    <circle class="node blue" cx="116" cy="92" r="38"/>
+    <line class="muted" x1="116" y1="59" x2="116" y2="125"/>
+    <text class="sigma" x="92" y="98">Σ</text>
+    <path d="M128 106 H138 V92 H154" stroke="#245bd6" stroke-width="2.4" fill="none"/>
+    <line class="line-output" x1="154" y1="92" x2="220" y2="92"/>
+    <circle class="node output" cx="238" cy="92" r="14"/>
+  </g>
+</svg>
