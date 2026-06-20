@@ -33,14 +33,6 @@ const slug = rawSlug || deckFile.replace(/\.slides\.md$/, '').replace(/\.md$/, '
 
 const deckText = readFileSync(srcDeck, 'utf8')
 
-// Warn if the deck lacks hash routing (needed for Pages navigation).
-if (!/^\s*routerMode:\s*hash\s*$/m.test(deckText)) {
-  console.warn(
-    `WARNING: ${deckFile} has no "routerMode: hash" in its headmatter; ` +
-      `navigation links may 404 on GitHub Pages.`,
-  )
-}
-
 // Collect ./assets/... references from the deck, plus url(./assets/...) from any
 // style.css it imports.
 const refs = new Set()

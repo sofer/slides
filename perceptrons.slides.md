@@ -2,9 +2,6 @@
 title: "Neural networks: from perceptrons to transformers"
 transition: slide-left
 mdc: true
-# Hash routing keeps slide URLs as fragments (#/2) so navigation and deep links
-# work on static hosts like GitHub Pages without 404s or doubled base paths.
-routerMode: hash
 ---
 
 <style>
