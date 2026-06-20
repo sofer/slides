@@ -33,8 +33,8 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # Served from https://sofer.github.io/slides/, so the build needs the repo
-      # name as its base path for assets to resolve.
+      # build.mjs builds each deck in decks.json into dist/<slug>/ with base
+      # /slides/<slug>/, then writes the dist/index.html landing page.
       - run: pnpm run build
 
       - uses: actions/upload-pages-artifact@v3
