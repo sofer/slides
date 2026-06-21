@@ -8,6 +8,20 @@ mdc: true
 @import "./style.css";
 </style>
 
+<div class="fac-title-slide">
+
+# From perceptrons to transformers
+
+## Part 1: The perceptron
+
+</div>
+
+<!--
+Part one of the story: how a single artificial neuron learns to classify.
+-->
+
+---
+
 # Modelling the neuron
 
 <div class="paper-citation-slide">
@@ -65,7 +79,7 @@ Six years later, Hebb introduced the idea that connections in neurons might chan
 </div>
 
 <!--
-In 1958, Rosenblatt brings all these ideas together in an artificial neuron that uses labelled examples to learn a classification boundary.
+Then in 1958, Rosenblatt brings all these ideas together in an artificial neuron that uses labelled examples to learn a classification boundary.
 -->
 
 ---
@@ -77,7 +91,7 @@ In 1958, Rosenblatt brings all these ideas together in an artificial neuron that
 <p class="sample-caption">The line separates two classes of input.</p>
 
 <!--
-Which side of the line a point falls determines the predicted output.
+The classification boundary determines the prediction.
 -->
 
 ---
@@ -93,7 +107,7 @@ Which side of the line a point falls determines the predicted output.
 </v-click>
 
 <!--
-Changing the weights changes the slope of the line.
+And changes the prediction for some of the data points.
 
 Answer: The position of the boundary needs to move, without changing its slope.
 -->
@@ -104,28 +118,38 @@ Answer: The position of the boundary needs to move, without changing its slope.
 
 <img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/08-bias-shift-letterbox.svg" alt="The same sloped boundary moves without changing its slope">
 
-<p class="sample-caption">Bias translates the boundary along its normal direction.</p>
+<p class="sample-caption">Changing the bias translates the boundary along its normal direction.</p>
+
+<v-click>
+<p class="sample-question">What's the final step?</p>
+</v-click>
 
 <!--
-It moves the decision boundary without changing its slope.
+And gets us closer to a correct prediction.
+
+Answer: The activation function.
 -->
 
 ---
 
-# Activation turns the score into a prediction
+# Activation turns the score into a binary prediction
 
-<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/09-activation-step-letterbox.svg" alt="A score past the threshold passes through the activation step function and becomes a class prediction">
+<div class="sample-formula">
 
-<p class="sample-caption">A score becomes a prediction.</p>
+$$\hat{y} = \begin{cases} 1 & \text{if } \; w \cdot x + b \ge 0 \\ 0 & \text{otherwise} \end{cases}$$
+
+</div>
+
+<p class="sample-caption">The perceptron predicts a score.</p>
 
 <v-click>
-<p class="sample-question">Once you have a prediction, what do you compare it with?</p>
+<p class="sample-question">What are the possible predictions in this case?</p>
 </v-click>
 
 <!--
-The activation function turns the score into one of two predictions, depending on which side of the line the point falls on.
+Depending on which side of the line a data point falls.
 
-Answer: Compare it with the expected classification.
+Answer: 0 and 1.
 -->
 
 ---
@@ -137,13 +161,13 @@ Answer: Compare it with the expected classification.
 <p class="sample-caption">Error = Expected - Prediction</p>
 
 <v-click>
-<p class="sample-question">If the prediction is wrong, what needs updating?</p>
+<p class="sample-question">In this case, what are the possible values of the error?</p>
 </v-click>
 
 <!--
 In this simple case, the error is just the expected value minus the prediction.
 
-Answer: The weights and bias.
+Answer: -1, 0, 1.
 -->
 
 ---
@@ -152,16 +176,16 @@ Answer: The weights and bias.
 
 <img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/11-error-update-letterbox.svg" alt="An error causes the separating line to move toward a better position">
 
-<p class="sample-caption">The parameters are adjusted to reduce the error.</p>
+<p class="sample-caption">The boundary shifts.</p>
 
 <v-click>
 <p class="sample-question">After one correction, should we expect the whole boundary to be fixed?</p>
 </v-click>
 
 <!--
-The relative size of the updates of each weight and bias depends on the size of the error.
+In the direction of the error.
 
-Answer: No. One correction responds to one mistake; the model needs repeated chances to improve the boundary.
+Answer: No. The model usually needs repeated chances to improve the boundary.
 -->
 
 ---
@@ -170,16 +194,46 @@ Answer: No. One correction responds to one mistake; the model needs repeated cha
 
 <img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/12-epochs-letterbox.svg" alt="The separating line improves over three repeated passes through the same data">
 
-<p class="sample-caption">Repeated passes refine the line.</p>
+<p class="sample-caption">Repeated passes refine the boundary.</p>
 
 <v-click>
 <p class="sample-question">What would make another pass through the data pointless?</p>
 </v-click>
 
 <!--
-Repeatedly running the same dataset through the perceptron gives the model more chances to move the boundary and reduce the error.
+Giving the model more chances to move the boundary and reduce the error.
 
 Answer: When no straight boundary can separate the classes; the limitation is representational, not training time.
+-->
+
+---
+
+# Linear classification has limits
+
+<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/13-linear-limit-letterbox.svg" alt="A single straight line cannot separate alternating classes">
+
+<p class="sample-caption">A single straight line is too simple.</p>
+
+<v-click>
+<p class="sample-question">How could we overcome this limit?</p>
+</v-click>
+
+<!--
+And more training will not solve the problem.
+
+Answer: By combining simple activated units, so the model can build more complex boundaries.
+-->
+
+---
+
+# Layers can handle more complexity
+
+<img class="sample-boundary-visual" src="./assets/paper-fronts/rosenblatt-figure-1-organization-trimmed.png" alt="Rosenblatt's Figure 1, showing sensory, association and response layers in the perceptron">
+
+<p class="sample-caption">From Rosenblatt's original paper.</p>
+
+<!--
+Rosenblatt's perceptron already included sensory, association and response layers that could combine to build more complex boundaries.
 -->
 
 ---
@@ -198,46 +252,7 @@ Answer: When no straight boundary can separate the classes; the limitation is re
 </div>
 
 <!--
-Rosenblatt also built a machine that could recognise patterns, showing the model in action.
--->
-
----
-
-# Linear classification has limits
-
-<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/13-linear-limit-letterbox.svg" alt="A single straight line cannot separate alternating classes">
-
-<p class="sample-caption">Some problems need more structure.</p>
-
-<v-click>
-<p class="sample-question">How could we overcome this limit?</p>
-</v-click>
-
-<!--
-If no straight line can separate the classes, more training will not solve the problem.
-
-Answer: By combining simple activated units, so the model can build more complex boundaries.
--->
-
----
-
-# Layers can handle more complexity
-
-<div class="paper-citation-slide">
-  <div class="paper-citation-image-crop paper-citation-image-crop--backprop">
-    <img src="./assets/paper-fronts/backpropagation-1986.png" alt="Top of the first page of the 1986 backpropagation paper">
-  </div>
-
-  <div class="paper-citation-copy">
-    <p class="paper-citation-title">Learning representations by back-propagating errors</p>
-    <p class="paper-citation-meta">Rumelhart, Hinton and Williams (1986)</p>
-  </div>
-</div>
-
-<p class="sample-caption">From Rosenblatt's original paper.</p>
-
-<!--
-Rosenblatt's perceptron already included sensory, association and response layers that could combine to build more complex boundaries, but training them effectively would have to wait until the 1980s.
+Rosenblatt even built a machine using a perceptron network that could recognise visual patterns, but effective training would have to wait until the 1980s.
 -->
 
 ---

@@ -935,6 +935,17 @@ body {
   line-height: 1.14;
 }
 
+.slidev-layout .sample-formula {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min(960px, 84vw);
+  min-height: 240px;
+  margin: 0 auto;
+  font-size: 34px;
+  color: var(--fac-black);
+}
+
 .classification-code {
   margin-top: 24px;
 }
