@@ -324,6 +324,22 @@ Answers and facilitation notes in teaching-plan.md.
 
 ---
 
+<div class="get-into-it-slide">
+
+# Let's get into it
+
+<div style="display: flex; justify-content: center; margin-top: 8px;">
+  <img src="./assets/workshop-qr.png" alt="Workshop materials QR code" class="get-into-it-qr" />
+</div>
+
+</div>
+
+<!--
+Hand-off slide: participants scan the QR to start the practical module.
+-->
+
+---
+
 <div class="closing-centre closing-large">
   <p>One more thing...</p>
 </div>
