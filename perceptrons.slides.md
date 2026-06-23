@@ -8,6 +8,34 @@ mdc: true
 @import "./style.css";
 </style>
 
+<div class="welcome-slide">
+
+# Welcome :)
+
+<div class="welcome-content">
+  <img class="welcome-qr" src="./assets/workshop-qr.png" alt="Workshop materials QR code" />
+  <img class="welcome-qr" src="./assets/discord-qr.png" alt="Discord QR code" />
+
+  <div class="welcome-details">
+    <p><strong>Wi-Fi</strong></p>
+    <p>Name: FAC</p>
+    <p>Pass:</p>
+    <p>StochasticParrots27</p>
+  </div>
+
+  <p class="welcome-label">Materials</p>
+  <p class="welcome-label">Discord</p>
+  <p class="welcome-start"><strong>Starting at 14:10</strong></p>
+</div>
+
+</div>
+
+<!--
+Practical welcome slide. Replace the Wi-Fi pass and start time for the actual session.
+-->
+
+---
+
 <div class="fac-title-slide">
 
 # From perceptrons to transformers
@@ -18,6 +46,16 @@ mdc: true
 
 <!--
 Part one of the story: how a single artificial neuron learns to classify.
+-->
+
+---
+
+<div class="image-only-slide">
+  <img src="./assets/perceptrons/cold-open-letter-c.png" alt="A large white C on a dark background">
+</div>
+
+<!--
+You can spot a C in a split second. No one can write the rule that separates every C from every other letter. Could a machine find the rule for itself?
 -->
 
 ---
@@ -36,7 +74,7 @@ Part one of the story: how a single artificial neuron learns to classify.
 </div>
 
 <!--
-The story begins in 1943, when McCulloch and Pitts publish their seminal paper on the mathematics of the nervous system.
+Their answer is almost insultingly simple: inputs, a sum, a threshold.
 -->
 
 ---
@@ -48,7 +86,7 @@ The story begins in 1943, when McCulloch and Pitts publish their seminal paper o
 <p class="sample-caption">A weighted sum of inputs and a threshold function.</p>
 
 <!--
-With the basic components in place, their model could perform all logical functions, although it couldn't learn them.
+It computes — it can't learn.
 -->
 
 ---
@@ -57,10 +95,10 @@ With the basic components in place, their model could perform all logical functi
 
 <img class="sample-boundary-visual" src="./assets/perceptrons/story-beats/03-hebb-fire-together.svg" alt="A connection between active units becomes stronger after experience">
 
-<p class="sample-caption">The Organization of Behavior, 1949.</p>
+<p class="sample-caption">Donald Hebb, The Organization of Behavior, 1949.</p>
 
 <!--
-Six years later, Hebb introduced the idea that connections in neurons might change through experience.
+The weights are something experience can write to.
 -->
 
 ---
@@ -79,7 +117,7 @@ Six years later, Hebb introduced the idea that connections in neurons might chan
 </div>
 
 <!--
-Then in 1958, Rosenblatt brings all these ideas together in an artificial neuron that uses labelled examples to learn a classification boundary.
+It nudges its own weights until it finds the rule nobody wrote down.
 -->
 
 ---
@@ -91,7 +129,7 @@ Then in 1958, Rosenblatt brings all these ideas together in an artificial neuron
 <p class="sample-caption">The line separates two classes of input.</p>
 
 <!--
-The classification boundary determines the prediction.
+Learning means finding where to put the line.
 -->
 
 ---
@@ -103,11 +141,11 @@ The classification boundary determines the prediction.
 <p class="sample-caption">Changing the weights rotates the boundary.</p>
 
 <v-click>
-<p class="sample-question sample-question--wide">If the slope is correct but the boundary is in the wrong place, what still needs to change?</p>
+<p class="sample-question">If the slope is correct but the boundary is in the wrong place, what still needs to change?</p>
 </v-click>
 
 <!--
-And changes the prediction for some of the data points.
+Weights are the angle of the decision.
 
 Answer: The position of the boundary needs to move, without changing its slope.
 -->
@@ -125,7 +163,7 @@ Answer: The position of the boundary needs to move, without changing its slope.
 </v-click>
 
 <!--
-And gets us closer to a correct prediction.
+Weights for the angle, bias for the position.
 
 Answer: The activation function.
 -->
@@ -147,7 +185,7 @@ $$\hat{y} = \begin{cases} 1 & \text{if } \; w \cdot x + b \ge 0 \\ 0 & \text{oth
 </v-click>
 
 <!--
-Depending on which side of the line a data point falls.
+Now it's committed. Now it can be wrong.
 
 Answer: 0 and 1.
 -->
@@ -165,7 +203,7 @@ Answer: 0 and 1.
 </v-click>
 
 <!--
-In this simple case, the error is just the expected value minus the prediction.
+That little number is the entire feedback signal.
 
 Answer: -1, 0, 1.
 -->
@@ -183,9 +221,9 @@ Answer: -1, 0, 1.
 </v-click>
 
 <!--
-In the direction of the error.
+One example, one nudge — not enough to fix everything.
 
-Answer: No. The model usually needs repeated chances to improve the boundary.
+Answer: No. One nudge only tells the machine about one mistake.
 -->
 
 ---
@@ -201,27 +239,27 @@ Answer: No. The model usually needs repeated chances to improve the boundary.
 </v-click>
 
 <!--
-Giving the model more chances to move the boundary and reduce the error.
+When there are no mistakes, there are no nudges.
 
-Answer: When no straight boundary can separate the classes; the limitation is representational, not training time.
+Answer: When no straight boundary can separate the classes. The limitation is the shape, not the training time.
 -->
 
 ---
 
 # Linear classification has limits
 
-<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/13-linear-limit-letterbox.svg" alt="A single straight line cannot separate alternating classes">
+<img class="sample-boundary-visual" src="./assets/perceptrons/story-beats-v2/13-linear-limit-letterbox.svg" alt="XOR truth table on the left; a scatter plot of the XOR inputs on the right showing no single line separates the alternating classes">
 
-<p class="sample-caption">A single straight line is too simple.</p>
+<p class="sample-caption">Classifying XOR.</p>
 
 <v-click>
 <p class="sample-question">How could we overcome this limit?</p>
 </v-click>
 
 <!--
-And more training will not solve the problem.
+It's not effort, it's the shape of what one line can represent.
 
-Answer: By combining simple activated units, so the model can build more complex boundaries.
+Answer: By combining perceptrons into a network.
 -->
 
 ---
@@ -233,7 +271,7 @@ Answer: By combining simple activated units, so the model can build more complex
 <p class="sample-caption">From Rosenblatt's original paper.</p>
 
 <!--
-Rosenblatt's perceptron already included sensory, association and response layers that could combine to build more complex boundaries.
+The idea of depth was there in Rosenblatt's original design.
 -->
 
 ---
@@ -252,24 +290,106 @@ Rosenblatt's perceptron already included sensory, association and response layer
 </div>
 
 <!--
-Rosenblatt even built a machine using a perceptron network that could recognise visual patterns, but effective training would have to wait until the 1980s.
+Not a diagram. An actual room of wires and motors. It worked.
 -->
 
 ---
 
-# What comes next
+# What came next
 
-<div class="paper-citation-slide">
-  <div class="paper-citation-image-crop">
-    <img src="./assets/paper-fronts/transformers-2017.png" alt="Top of the first page of the Attention Is All You Need paper">
-  </div>
+- Backpropagation (1986)
+- Convolutional networks (1998)
+- AlexNet and ImageNet (2012)
+- Word embeddings (2013)
+- Attention (2014)
+- Transformers (2017)
 
-  <div class="paper-citation-copy">
-    <p class="paper-citation-title">Attention Is All You Need</p>
-    <p class="paper-citation-meta">Vaswani et al. (2017)</p>
+<!--
+We had to wait almost 30 years for a good solution to this problem, which was provided by the idea of backpropagation in 1986. A number of ground-breaking papers followed over the next thirty years, culminating in the "Attention Is All You Need" paper in 2017.
+-->
+
+---
+
+# Whiteboard questions
+
+1. Draw a perceptron: inputs, weights, bias, weighted sum, activation function, and prediction.
+2. Draw a 2D classification problem: two feature axes, two classes, and a possible separating line.
+3. On the boundary, show what changing the weights does and what changing the bias does.
+4. Make an AND truth table, plot the four points, and draw a boundary.
+5. Make an XOR truth table, plot the four points, and try to draw a single boundary. Why does it fail, and what fixes it?
+
+<!--
+Answers and facilitation notes in teaching-plan.md.
+-->
+
+---
+
+<div class="closing-centre closing-large">
+  <p>One more thing...</p>
+</div>
+
+<!--
+Transition from the workshop content into the wider programme and application close.
+-->
+
+---
+
+<div class="get-into-it-slide">
+
+# Let's get into it
+
+<div class="get-into-it-content">
+  <img src="./assets/workshop-qr.png" alt="Workshop materials QR code" class="get-into-it-qr" />
+</div>
+
+</div>
+
+<!--
+Move learners from slides and whiteboard into the platform module. Replace workshop-card.png with the perceptron module card.
+-->
+
+---
+
+<div class="closing-programme">
+  <img src="./assets/fac-brand/logo-horizontal-white-bg.svg" alt="Founders and Coders" class="closing-logo" />
+
+  <h1>Machine Learning Apprenticeship</h1>
+
+  <div class="closing-feature-grid">
+    <div>52 in-person workshops <span>format</span></div>
+    <div>Fully funded <span>funding</span></div>
+    <div>Peer-led discussion every session <span>cohort</span></div>
+    <div>Projects tied to real work <span>outcomes</span></div>
   </div>
 </div>
 
 <!--
-Later breakthroughs solved more complex problems: backpropagation trains layers, CNNs reveal image structure, embeddings represent meaning, attention uses context, and transformers scale it.
+Programme summary for open workshops where the apprenticeship is relevant.
+-->
+
+---
+
+<div class="closing-programme closing-eligibility">
+  <img src="./assets/fac-brand/logo-horizontal-white-bg.svg" alt="Founders and Coders" class="closing-logo" />
+
+  <h1>Eligibility</h1>
+
+  <div class="closing-feature-grid closing-eligibility-grid">
+    <div>Employed or own company <span>employed</span></div>
+    <div>Resident for 3+ years <span>residency</span></div>
+  </div>
+</div>
+
+<!--
+Eligibility for the apprenticeship.
+-->
+
+---
+
+<div class="closing-apply">
+  <img src="./assets/attention-closing/apply-qr.png" alt="Apply QR code" />
+</div>
+
+<!--
+Final closing slide: application/signup close.
 -->

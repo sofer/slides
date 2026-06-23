@@ -57,10 +57,12 @@
   <circle class="red" cx="458.6" cy="187.8" r="11"/>
   <circle class="red" cx="525.2" cy="166.9" r="11"/>
   <circle class="red" cx="425.3" cy="221.1" r="11"/>
-  <line class="boundary" x1="255.1" y1="106.4" x2="495.6" y2="377.6"/>
-  <circle class="ring" cx="480.8" cy="333.8" r="24"/>
+  <line class="boundary" x1="390" y1="96" x2="390" y2="365"/>
   <circle class="ring" cx="303.2" cy="179.4" r="24"/>
-  <path class="curvy" d="M255.1 106.4 A 181.25 181.25 0 0 0 213.2 161.3"/>
+  <circle class="ring" cx="386.4" cy="154.4" r="24"/>
+  <circle class="ring" cx="403.1" cy="308.7" r="24"/>
+  <circle class="ring" cx="480.8" cy="333.8" r="24"/>
+  <path class="curvy" d="M390 96 A 134.5 134.5 0 0 0 323 114"/>
   <line class="bigarrow" x1="680" y1="250" x2="840" y2="250"/>
   <rect class="panel" x="860" y="70" width="520" height="360" rx="10"/>
   <line class="grid" x1="1021.0" y1="388.0" x2="1021.0" y2="96.0"/>
@@ -81,6 +83,7 @@
   <circle class="red" cx="1198.6" cy="187.8" r="11"/>
   <circle class="red" cx="1265.2" cy="166.9" r="11"/>
   <circle class="red" cx="1165.3" cy="221.1" r="11"/>
-  <line class="boundary-ghost" x1="995.1" y1="106.4" x2="1235.6" y2="377.6"/>
-  <line class="boundary" x1="923.9" y1="221.7" x2="1340.1" y2="299.9"/>
+  <line class="boundary-ghost" x1="1130" y1="96" x2="1130" y2="365"/>
+  <line class="boundary" x1="923.9" y1="167.5" x2="1340.1" y2="245.7"/>
+  <circle class="ring" cx="1165.3" cy="221.1" r="24"/>
 </svg>
