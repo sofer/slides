@@ -3,13 +3,13 @@
 // Then ensure the deck is registered in decks.json.
 //
 // Usage:
-//   node sync-deck.mjs <path-to-deck.slides.md-in-brain> [slug]
+//   node sync-deck.mjs <path-to-deck.html-in-brain> [slug]
 //
 // Example:
-//   node sync-deck.mjs ~/code/brain/slides/perceptrons.slides.md perceptrons
+//   node sync-deck.mjs ~/code/brain/slides/perceptrons.html perceptrons
 //
 // Source of truth is brain; this repo is the publish target. After syncing,
-// run `pnpm run build` to verify, then commit and push (CI deploys to Pages).
+// run `node build.mjs` to verify, then commit and push (CI deploys to Pages).
 import { readFileSync, writeFileSync, copyFileSync, mkdirSync, existsSync } from 'node:fs'
 import { dirname, resolve, basename, join } from 'node:path'
 import { homedir } from 'node:os'
@@ -17,7 +17,7 @@ import { homedir } from 'node:os'
 const expand = (p) => (p.startsWith('~') ? join(homedir(), p.slice(1)) : p)
 const [, , rawSrc, rawSlug] = process.argv
 if (!rawSrc) {
-  console.error('usage: node sync-deck.mjs <brain-deck.slides.md> [slug]')
+  console.error('usage: node sync-deck.mjs <brain-deck.html> [slug]')
   process.exit(1)
 }
 
@@ -29,18 +29,19 @@ if (!existsSync(srcDeck)) {
 const srcDir = dirname(srcDeck)
 const repoDir = dirname(new URL(import.meta.url).pathname)
 const deckFile = basename(srcDeck)
-const slug = rawSlug || deckFile.replace(/\.slides\.md$/, '').replace(/\.md$/, '')
+const slug = rawSlug || deckFile.replace(/\.html$/, '').replace(/\.slides\.md$/, '').replace(/\.md$/, '')
 
 const deckText = readFileSync(srcDeck, 'utf8')
 
 // Collect ./assets/... references from the deck, plus url(./assets/...) from any
-// style.css it imports.
+// style.css it links to.
 const refs = new Set()
 const assetRe = /\.\/(assets\/[^"')\s]+)/g
 for (const m of deckText.matchAll(assetRe)) refs.add(m[1])
 
-const importsStyle = /@import\s+["']\.\/style\.css["']/.test(deckText)
-if (importsStyle) {
+const linksStyle = /href=["']\.\/style\.css["']/.test(deckText) ||
+                   /@import\s+["']\.\/style\.css["']/.test(deckText)
+if (linksStyle) {
   const srcStyle = join(srcDir, 'style.css')
   if (existsSync(srcStyle)) {
     const css = readFileSync(srcStyle, 'utf8')
@@ -63,7 +64,7 @@ function copyInto(relPath) {
 
 copyFileSync(srcDeck, join(repoDir, deckFile))
 console.log(`deck   ${deckFile}`)
-if (importsStyle && existsSync(join(srcDir, 'style.css'))) {
+if (linksStyle && existsSync(join(srcDir, 'style.css'))) {
   copyFileSync(join(srcDir, 'style.css'), join(repoDir, 'style.css'))
   console.log('style  style.css')
 }
@@ -71,10 +72,11 @@ let copied = 0
 for (const rel of [...refs].sort()) if (copyInto(rel)) copied++
 console.log(`assets ${copied} file(s) copied`)
 
-// Register the deck in decks.json (title from headmatter if present).
+// Register the deck in decks.json (title from <title> tag if present).
 const decksPath = join(repoDir, 'decks.json')
 const decks = existsSync(decksPath) ? JSON.parse(readFileSync(decksPath, 'utf8')) : []
-const titleMatch = deckText.match(/^title:\s*["']?(.+?)["']?\s*$/m)
+const titleMatch = deckText.match(/<title>([^<]+)<\/title>/) ||
+                   deckText.match(/^title:\s*["']?(.+?)["']?\s*$/m)
 const title = titleMatch ? titleMatch[1] : slug
 const entry = { slug, file: deckFile, title }
 const idx = decks.findIndex((d) => d.slug === slug)
@@ -82,4 +84,4 @@ if (idx >= 0) decks[idx] = { ...decks[idx], ...entry }
 else decks.push(entry)
 writeFileSync(decksPath, JSON.stringify(decks, null, 2) + '\n')
 console.log(`decks.json: ${idx >= 0 ? 'updated' : 'added'} "${slug}"`)
-console.log('\nNext: pnpm run build  (verify)  then commit & push to deploy.')
+console.log('\nNext: node build.mjs  (verify)  then commit & push to deploy.')

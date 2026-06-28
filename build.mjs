@@ -1,49 +1,63 @@
-// Builds every deck listed in decks.json into dist/<slug>/ (each with its own
-// base path so assets resolve under GitHub Pages), then writes a landing page
-// at dist/index.html linking to them.
+// Builds every deck listed in decks.json into dist/<slug>/ then writes a
+// landing page at dist/index.html linking to them.
+//
+// Each deck is a self-contained Reveal.js HTML file. The build copies the
+// HTML as index.html, copies style.css, and copies all ./assets/... files
+// referenced by the HTML and the CSS into dist/<slug>/.
 //
 // Served at https://sofer.github.io/slides/ ; each deck at /slides/<slug>/.
-import { execSync } from 'node:child_process'
-import { readFileSync, writeFileSync, rmSync } from 'node:fs'
+// Reveal.js uses hash routing (#/2, #/3 …) so no SPA fallback is needed —
+// GitHub Pages serves index.html for the slug root and the hash is handled
+// client-side.
+import { readFileSync, writeFileSync, copyFileSync, mkdirSync, rmSync } from 'node:fs'
+import { dirname, join } from 'node:path'
 
 const SITE_BASE = '/slides'
 const decks = JSON.parse(readFileSync(new URL('./decks.json', import.meta.url)))
+const repoDir = dirname(new URL(import.meta.url).pathname)
 
-// Number of leading path segments that form a deck's base, e.g. /slides/<slug>/
-// is 2. GitHub Pages serves only the site-root 404.html for unknown paths, so a
-// deep link like /slides/<slug>/3 or /slides/<slug>/presenter/1 would otherwise
-// hit GitHub's generic 404. The pair of snippets below (rafgraph's
-// spa-github-pages technique) redirects such a path to the deck's index with the
-// route encoded in the query, then restores it client-side before the router
-// boots, so history-mode deep links and refreshes recover.
-const SEGMENTS_TO_KEEP = SITE_BASE.split('/').filter(Boolean).length + 1
+const assetRe = /\.\/(assets\/[^"')\s]+)/g
+
+function collectAssets(text) {
+  const refs = new Set()
+  for (const m of text.matchAll(assetRe)) refs.add(m[1])
+  return refs
+}
+
+function copyInto(rel, destDir) {
+  const from = join(repoDir, rel)
+  const to = join(destDir, rel)
+  try {
+    mkdirSync(dirname(to), { recursive: true })
+    copyFileSync(from, to)
+  } catch {
+    console.warn(`  missing asset, skipped: ${rel}`)
+  }
+}
 
 rmSync('dist', { recursive: true, force: true })
 
 for (const deck of decks) {
-  const base = `${SITE_BASE}/${deck.slug}/`
-  console.log(`\n=== building ${deck.slug} (base ${base}) ===`)
-  execSync(
-    `pnpm exec slidev build ${deck.file} --base ${base} --out dist/${deck.slug}`,
-    { stdio: 'inherit' },
-  )
-  injectSpaRestore(`dist/${deck.slug}/index.html`)
-}
+  const destDir = join(repoDir, `dist/${deck.slug}`)
+  mkdirSync(destDir, { recursive: true })
+  console.log(`\n=== building ${deck.slug} ===`)
 
-// Root 404.html: GitHub serves this for any unknown path under the site.
-writeFileSync('dist/404.html', `<!doctype html>
-<html><head><meta charset="utf-8"><title>Redirecting…</title><script>
-  // Encode /slides/<slug>/<route> as /slides/<slug>/?/<route> and redirect, so
-  // the deck SPA (served at /slides/<slug>/) can restore the route on load.
-  var segmentsToKeep = ${SEGMENTS_TO_KEEP}, l = location
-  l.replace(
-    l.protocol + '//' + l.host +
-    l.pathname.split('/').slice(0, 1 + segmentsToKeep).join('/') + '/?/' +
-    l.pathname.split('/').slice(1 + segmentsToKeep).join('/').replace(/&/g, '~and~') +
-    (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') + l.hash
-  )
-</script></head><body></body></html>
-`)
+  const deckText = readFileSync(join(repoDir, deck.file), 'utf8')
+  writeFileSync(join(destDir, 'index.html'), deckText)
+  console.log(`  copied ${deck.file} → dist/${deck.slug}/index.html`)
+
+  const styleText = readFileSync(join(repoDir, 'style.css'), 'utf8')
+  writeFileSync(join(destDir, 'style.css'), styleText)
+  console.log(`  copied style.css`)
+
+  const refs = new Set([...collectAssets(deckText), ...collectAssets(styleText)])
+  let copied = 0
+  for (const rel of [...refs].sort()) {
+    copyInto(rel, destDir)
+    copied++
+  }
+  console.log(`  assets: ${copied} file(s)`)
+}
 
 const cards = decks
   .map(
@@ -85,25 +99,6 @@ ${cards}
 
 writeFileSync('dist/index.html', index)
 console.log(`\nWrote dist/index.html with ${decks.length} deck(s).`)
-
-// Insert a synchronous script at the top of <head> that turns the
-// /?/<route> query (set by the root 404.html) back into a real path via
-// replaceState, before Slidev's router reads location.
-function injectSpaRestore(htmlPath) {
-  const restore = `<script>
-  (function () {
-    var l = location
-    if (l.search[1] === '/') {
-      var decoded = l.search.slice(1).split('&').map(function (s) {
-        return s.replace(/~and~/g, '&')
-      }).join('?')
-      history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash)
-    }
-  })()
-</script>`
-  const html = readFileSync(htmlPath, 'utf8')
-  writeFileSync(htmlPath, html.replace('<head>', `<head>${restore}`))
-}
 
 function escapeHtml(s) {
   return s.replace(/[&<>"']/g, (c) =>

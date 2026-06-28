@@ -22,20 +22,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
 
-      - run: pnpm install --frozen-lockfile
-
-      # build.mjs builds each deck in decks.json into dist/<slug>/ with base
-      # /slides/<slug>/, then writes the dist/index.html landing page.
-      - run: pnpm run build
+      # build.mjs copies each deck in decks.json into dist/<slug>/ with its
+      # CSS and assets, then writes the dist/index.html landing page.
+      - run: node build.mjs
 
       - uses: actions/upload-pages-artifact@v3
         with:

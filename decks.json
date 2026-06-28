@@ -1,7 +1,7 @@
 [
   {
     "slug": "perceptrons",
-    "file": "perceptrons.slides.md",
+    "file": "perceptrons.html",
     "title": "Neural networks: from perceptrons to transformers",
     "description": "From McCulloch and Pitts to the perceptron and the road to transformers."
   }

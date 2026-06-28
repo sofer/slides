@@ -9,42 +9,16 @@
   --fac-muted: #555555;
 }
 
-html,
-body,
-#app {
-  width: 100%;
-  min-width: 100%;
-  min-height: 100%;
-  margin: 0;
-  background: var(--fac-white);
-}
-
-body {
-  overflow: hidden;
-}
-
-.slidev-app,
-.slidev-wrapper,
-.slidev-page,
-.slidev-page-container {
-  background: var(--fac-white);
-}
-
-.slidev-layout {
+.reveal .slides section {
   position: relative;
-  overflow: hidden;
   box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
   background: var(--fac-white);
-  border: 1px solid #cfcfcf;
   color: var(--fac-black);
   font-family: Montserrat, Arial, Helvetica, sans-serif;
   padding: 44px 88px 90px;
 }
 
-.slidev-layout::before {
+.reveal .slides section::before {
   content: "";
   position: absolute;
   top: 8px;
@@ -56,7 +30,7 @@ body {
   background: url("./assets/fac-brand/template-logo.png") center center / contain no-repeat;
 }
 
-.slidev-layout::after {
+.reveal .slides section::after {
   content: "";
   position: absolute;
   left: -1.14%;
@@ -68,7 +42,7 @@ body {
   background: url("./assets/fac-brand/template-hatch.png") left top / 100% 100% no-repeat;
 }
 
-.slidev-layout h1 {
+.reveal .slides section h1 {
   max-width: 1160px;
   margin: 0 0 28px;
   font-size: 38px;
@@ -77,7 +51,7 @@ body {
   letter-spacing: 0;
 }
 
-.slidev-layout .compact-slide-title {
+.reveal .slides section .compact-slide-title {
   max-width: 960px;
   margin: 0 0 20px;
   font-size: 34px;
@@ -86,73 +60,73 @@ body {
   letter-spacing: 0;
 }
 
-.slidev-layout h2 {
+.reveal .slides section h2 {
   margin: 0 0 18px;
   font-size: 26px;
   line-height: 1.18;
   font-weight: 700;
 }
 
-.slidev-layout p,
-.slidev-layout li {
+.reveal .slides section p,
+.reveal .slides section li {
   font-size: 25px;
   line-height: 1.32;
   color: var(--fac-black);
   opacity: 1;
 }
 
-.slidev-layout .rag-title-slide p,
-.slidev-layout .rag-title-slide .rag-title-subtitle {
+.reveal .slides section .rag-title-slide p,
+.reveal .slides section .rag-title-slide .rag-title-subtitle {
   color: var(--fac-black) !important;
   opacity: 1 !important;
 }
 
-.slidev-layout ul,
-.slidev-layout ol {
+.reveal .slides section ul,
+.reveal .slides section ol {
   max-width: 850px;
 }
 
-.slidev-layout li + li {
+.reveal .slides section li + li {
   margin-top: 14px;
 }
 
-.slidev-layout .prompt-list {
+.reveal .slides section .prompt-list {
   max-width: 1080px;
   margin-top: 36px;
   padding-left: 44px;
   list-style: disc;
 }
 
-.slidev-layout .prompt-list li {
+.reveal .slides section .prompt-list li {
   display: list-item;
 }
 
-.slidev-layout .prompt-list li + li {
+.reveal .slides section .prompt-list li + li {
   margin-top: 34px;
 }
 
-.slidev-layout .search-query {
+.reveal .slides section .search-query {
   margin: 0 0 34px;
   font-size: 25px;
   line-height: 1.32;
 }
 
-.slidev-layout .search-reveals {
+.reveal .slides section .search-reveals {
   margin-top: 0;
   padding-left: 0;
   list-style: none;
 }
 
-.slidev-layout .search-reveals li {
+.reveal .slides section .search-reveals li {
   font-size: 24px;
   line-height: 1.25;
 }
 
-.slidev-layout .search-reveals li + li {
+.reveal .slides section .search-reveals li + li {
   margin-top: 15px;
 }
 
-.slidev-layout .reveal-definition {
+.reveal .slides section .reveal-definition {
   max-width: 820px;
   margin-top: 54px;
   font-size: 30px;
@@ -160,16 +134,16 @@ body {
   font-weight: 700;
 }
 
-.slidev-layout strong {
+.reveal .slides section strong {
   font-weight: 700;
 }
 
-.slidev-layout code,
-.slidev-layout pre {
+.reveal .slides section code,
+.reveal .slides section pre {
   font-family: "SFMono-Regular", Menlo, Consolas, monospace;
 }
 
-.slidev-layout pre {
+.reveal .slides section pre {
   border: 2px solid var(--fac-black);
   border-radius: 0;
   background: var(--fac-white);
@@ -177,15 +151,15 @@ body {
   box-shadow: none;
 }
 
-.slidev-layout img,
-.slidev-layout video {
+.reveal .slides section img,
+.reveal .slides section video {
   border: 2px solid var(--fac-black);
   background: var(--fac-white);
   max-height: 360px;
   object-fit: contain;
 }
 
-.slidev-layout img.fac-illustration {
+.reveal .slides section img.fac-illustration {
   display: block;
   width: 68%;
   max-width: 860px;
@@ -194,7 +168,7 @@ body {
   border: 0;
 }
 
-.slidev-layout img.example-visual {
+.reveal .slides section img.example-visual {
   display: block;
   width: 86%;
   max-width: 1040px;
@@ -203,14 +177,14 @@ body {
   border: 0;
 }
 
-.slidev-layout img.dot-product-visual {
+.reveal .slides section img.dot-product-visual {
   width: 92%;
   max-width: 1040px;
   max-height: 380px;
   margin-top: 6px;
 }
 
-.slidev-layout .slide-strapline {
+.reveal .slides section .slide-strapline {
   margin: 12px auto 0;
   max-width: 900px;
   font-size: 23px;
@@ -219,7 +193,7 @@ body {
   text-align: center;
 }
 
-.slidev-layout .dot-product-strapline {
+.reveal .slides section .dot-product-strapline {
   margin-left: 190px;
   text-align: left;
 }
@@ -365,7 +339,7 @@ body {
   box-shadow: 0 8px 22px rgb(0 0 0 / 12%);
 }
 
-.slidev-layout .paper-citation-image-crop img {
+.reveal .slides section .paper-citation-image-crop img {
   display: block;
   width: 100%;
   max-height: none;
@@ -375,7 +349,7 @@ body {
   box-shadow: none;
 }
 
-.slidev-layout .paper-citation-image-crop--backprop img {
+.reveal .slides section .paper-citation-image-crop--backprop img {
   transform: translateY(-84px);
 }
 
@@ -694,26 +668,26 @@ body {
   text-align: center;
 }
 
-.slidev-layout .labelled-pairs {
+.reveal .slides section .labelled-pairs {
   max-width: 890px;
   margin-top: 8px;
 }
 
-.slidev-layout .labelled-pairs li {
+.reveal .slides section .labelled-pairs li {
   font-size: 23px;
   line-height: 1.1;
 }
 
-.slidev-layout .labelled-pairs li + li {
+.reveal .slides section .labelled-pairs li + li {
   margin-top: 8px;
 }
 
-.slidev-layout .labelled-pairs .label-one {
+.reveal .slides section .labelled-pairs .label-one {
   color: #245bd6;
   font-weight: 700;
 }
 
-.slidev-layout .labelled-pairs .label-zero {
+.reveal .slides section .labelled-pairs .label-zero {
   color: var(--fac-red);
   font-weight: 700;
 }
@@ -808,14 +782,14 @@ body {
   margin: 14px 0 0;
 }
 
-.slidev-layout .dataset-comparison-prompts p {
+.reveal .slides section .dataset-comparison-prompts p {
   margin: 0;
   font-size: 21px;
   line-height: 1.18;
   font-weight: 700;
 }
 
-.slidev-layout .dataset-comparison-prompts p + p {
+.reveal .slides section .dataset-comparison-prompts p + p {
   margin-top: 10px;
 }
 
@@ -853,7 +827,7 @@ body {
   box-shadow: none;
 }
 
-.slidev-layout img.story-beat-visual {
+.reveal .slides section img.story-beat-visual {
   display: block;
   width: min(960px, 84vw);
   max-height: 455px;
@@ -900,7 +874,7 @@ body {
   font-weight: 700;
 }
 
-.slidev-layout img.sample-boundary-visual {
+.reveal .slides section img.sample-boundary-visual {
   display: block;
   width: min(960px, 84vw);
   max-height: 320px;
@@ -911,31 +885,31 @@ body {
   box-shadow: none;
 }
 
-.slidev-layout img.sample-boundary-visual--raised {
+.reveal .slides section img.sample-boundary-visual--raised {
   margin-top: -28px;
 }
 
-.slidev-layout .sample-caption {
+.reveal .slides section .sample-caption {
   max-width: 920px;
   margin: 20px 0 0;
   color: var(--fac-black);
   font-weight: 700;
 }
 
-.slidev-layout .sample-question {
+.reveal .slides section .sample-question {
   max-width: 1000px;
   margin: 22px 0 0;
   color: var(--fac-black);
   font-weight: 700;
 }
 
-.slidev-layout .sample-question--wide {
+.reveal .slides section .sample-question--wide {
   max-width: 1900px;
   font-size: 18px;
   line-height: 1.14;
 }
 
-.slidev-layout .sample-formula {
+.reveal .slides section .sample-formula {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -998,12 +972,12 @@ body {
   box-shadow: 0 8px 22px rgb(0 0 0 / 12%);
 }
 
-.slidev-layout .grid {
+.reveal .slides section .grid {
   position: relative;
   z-index: 1;
 }
 
-.slidev-layout > * {
+.reveal .slides section > * {
   position: relative;
   z-index: 1;
 }
@@ -1048,7 +1022,7 @@ body {
   z-index: 1;
 }
 
-.slidev-layout blockquote {
+.reveal .slides section blockquote {
   margin: 0;
   max-width: 900px;
   font-size: 46px;
@@ -1056,7 +1030,7 @@ body {
   font-weight: 700;
 }
 
-.slidev-layout .question-line {
+.reveal .slides section .question-line {
   max-width: 1040px;
   margin: 44px 0 0;
   font-size: 25px;
@@ -1064,58 +1038,58 @@ body {
   font-weight: 700;
 }
 
-.slidev-layout .embedding-comparison {
+.reveal .slides section .embedding-comparison {
   margin-top: 28px;
 }
 
-.slidev-layout .embedding-comparison > div + div {
+.reveal .slides section .embedding-comparison > div + div {
   margin-top: 34px;
 }
 
-.slidev-layout .embedding-comparison p {
+.reveal .slides section .embedding-comparison p {
   margin: 0;
 }
 
-.slidev-layout .chunking-core {
+.reveal .slides section .chunking-core {
   margin-top: 24px;
 }
 
-.slidev-layout .chunking-core p {
+.reveal .slides section .chunking-core p {
   margin: 0;
   font-size: 25px;
   line-height: 1.32;
 }
 
-.slidev-layout .chunking-core p + p {
+.reveal .slides section .chunking-core p + p {
   margin-top: 24px;
 }
 
-.slidev-layout .dot-product-revision {
+.reveal .slides section .dot-product-revision {
   margin-top: 30px;
 }
 
-.slidev-layout .dot-product-revision p {
+.reveal .slides section .dot-product-revision p {
   margin: 0;
   font-size: 25px;
   line-height: 1.32;
 }
 
-.slidev-layout .dot-product-revision p + p {
+.reveal .slides section .dot-product-revision p + p {
   margin-top: 24px;
 }
 
-.slidev-layout .whiteboard-questions {
+.reveal .slides section .whiteboard-questions {
   max-width: 1060px;
   margin-top: 24px;
   padding-left: 36px;
 }
 
-.slidev-layout .whiteboard-questions li {
+.reveal .slides section .whiteboard-questions li {
   font-size: 23px;
   line-height: 1.24;
 }
 
-.slidev-layout .whiteboard-questions li + li {
+.reveal .slides section .whiteboard-questions li + li {
   margin-top: 18px;
 }
 
@@ -1279,18 +1253,18 @@ body {
   object-fit: contain;
 }
 
-.slidev-layout .accent-yellow {
+.reveal .slides section .accent-yellow {
   background: var(--fac-yellow);
 }
 
-.slidev-layout .accent-red {
+.reveal .slides section .accent-red {
   background: var(--fac-red);
 }
 
-.slidev-layout .accent-green {
+.reveal .slides section .accent-green {
   background: var(--fac-green);
 }
 
-.slidev-layout .accent-blue {
+.reveal .slides section .accent-blue {
   background: var(--fac-blue);
 }
